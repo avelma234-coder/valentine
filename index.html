@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для моей любимой ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	background: radial-gradient(circle at center, #fff5f7 0%, #faddd7 100%);
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	color: #444;
+}
+
+/* ФОН */
+.floating-bg {
+	position: fixed;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+}
+
+.floating-item {
+	position: absolute;
+	opacity: 0.45;
+	animation: floatUp linear infinite;
+}
+
+.floating-item img {
+	height: 38px;
+}
+
+@keyframes floatUp {
+	from { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+	10% { opacity: 0.5; }
+	90% { opacity: 0.5; }
+	to { transform: translateY(-15vh) rotate(360deg); opacity: 0; }
+}
+
+/* КАРТОЧКА */
+.card {
+	z-index: 10;
+	background: rgba(255,255,255,0.92);
+	backdrop-filter: blur(14px);
+	border-radius: 30px;
+	padding: 35px;
+	max-width: 420px;
+	width: 90%;
+	box-shadow: 0 20px 50px rgba(255,120,150,0.35);
+	text-align: center;
+	min-height: 520px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.slide {
+	display: none;
+	animation: fade 0.8s ease;
+}
+
+.slide.active { display: block; }
+
+@keyframes fade {
+	from { opacity: 0; transform: translateY(20px) scale(0.95); }
+	to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+h1 {
+	font-family: 'Great Vibes', cursive;
+	font-size: 3.3rem;
+	color: #ff6b81;
+	margin-bottom: 18px;
+}
+
+p {
+	font-size: 1.1rem;
+	line-height: 1.6;
+	margin-bottom: 22px;
+}
+
+/* ФОТО */
+.photo {
+	width: 100%;
+	height: 250px;
+	object-fit: cover;
+	border-radius: 20px;
+	margin-bottom: 18px;
+	box-shadow: 0 8px 20px rgba(255,107,129,0.25);
+	border: 3px solid white;
+}
+
+/* ГАЛЕРЕЯ */
+.gallery {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 12px;
+	margin-bottom: 20px;
+}
+
+.gallery img {
+	width: 100%;
+	border-radius: 14px;
+	box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+	transition: transform 0.3s;
+}
+
+.gallery img:hover { transform: scale(1.05); }
+
+/* КНОПКИ */
+.btn {
+	background: linear-gradient(45deg, #ff6b81, #ff8e9e);
+	color: white;
+	border: none;
+	padding: 14px 36px;
+	border-radius: 50px;
+	font-size: 1.05rem;
+	font-weight: 600;
+	cursor: pointer;
+	box-shadow: 0 6px 18px rgba(255,107,129,0.35);
+	transition: 0.3s;
+}
+
+.btn:hover { transform: translateY(-3px); }
+
+.btn-group {
+	position: relative;
+	height: 70px;
+}
+
+#noBtn {
+	position: absolute;
+	right: 0;
+	background: white;
+	color: #ff6b81;
+	border: 2px solid #ff6b81;
+}
+
+/* АУДИО */
+audio { display: none; }
+</style>
+</head>
+
+<body>
+
+<audio id="music" preload="auto" loop>
+	<source src="https://cdn.pixabay.com/download/audio/2022/10/26/audio_8753746375.mp3?filename=lofi-study-112191.mp3">
+</audio>
+
+<div class="floating-bg" id="bg"></div>
+
+<div class="card">
+
+	<!-- СЛАЙД 1 -->
+	<div class="slide active" id="s1">
+		<h1>Привет, любимая…</h1>
+		<p>Я приготовил для тебя маленький сюрприз. Включи звук и нажми кнопку 💕</p>
+		<button class="btn" onclick="next(2)">Начать ✨</button>
+	</div>
+
+	<!-- СЛАЙД 2 -->
+	<div class="slide" id="s2">
+		<img src="love1.png" class="photo">
+		<p>Каждый момент с тобой — это что-то очень тёплое и настоящее.</p>
+		<button class="btn" onclick="next(3)">Дальше ❤️</button>
+	</div>
+
+	<!-- СЛАЙД 3 -->
+	<div class="slide" id="s3">
+		<h1>Это мы 💖</h1>
+		<div class="gallery">
+			<img src="love2.png">
+			<img src="love3.png">
+			<img src="love4.png">
+			<img src="love5.png">
+			<img src="lego1.png">
+			<img src="love1.png">
+		</div>
+		<button class="btn" onclick="next(4)">Дальше 💌</button>
+	</div>
+
+	<!-- СЛАЙД 4 -->
+	<div class="slide" id="s4">
+		<h1>Будешь моей валентинкой?</h1>
+		<p>14 февраля и навсегда 💕</p>
+		<div class="btn-group">
+			<button class="btn" onclick="finish()">ДА!</button>
+			<button class="btn" id="noBtn" onmouseover="run()">Нет</button>
+		</div>
+	</div>
+
+	<!-- СЛАЙД 5 -->
+	<div class="slide" id="s5">
+		<h1>Я самый счастливый ❤️</h1>
+		<p>Спасибо тебе за то, что ты есть. Я тебя очень люблю.</p>
+	</div>
+
+</div>
+
+<script>
+let cur = 1;
+const music = document.getElementById('music');
+music.volume = 0.4;
+
+function next(n) {
+	document.getElementById(`s${cur}`).classList.remove('active');
+	if (cur === 1) music.play();
+	cur = n;
+	document.getElementById(`s${cur}`).classList.add('active');
+}
+
+function run() {
+	const btn = document.getElementById('noBtn');
+	btn.style.transform = `translate(${Math.random()*120-60}px, ${Math.random()*80-40}px)`;
+}
+
+function finish() {
+	next(5);
+	confetti({
+		particleCount: 200,
+		spread: 90,
+		origin: { y: 0.6 },
+		colors: ['#ff6b81','#ffb3c1','#ffffff']
+	});
+}
+
+/* ФОН */
+const bg = document.getElementById('bg');
+const icons = [
+	'https://cdn.pixabay.com/photo/2016/10/26/15/28/heart-1771878_1280.png',
+	'https://cdn.pixabay.com/photo/2018/02/15/15/30/pink-3155589_1280.png'
+];
+
+for (let i = 0; i < 18; i++) {
+	const el = document.createElement('div');
+	el.className = 'floating-item';
+	el.style.left = Math.random()*100+'%';
+	el.style.animationDuration = 15 + Math.random()*10 + 's';
+	el.style.animationDelay = -Math.random()*20 + 's';
+
+	const img = document.createElement('img');
+	img.src = icons[Math.floor(Math.random()*icons.length)];
+	el.appendChild(img);
+	bg.appendChild(el);
+}
+</script>
+
+</body>
+</html>

@@ -83,7 +83,41 @@ body {
     align-items: center;
     justify-content: center;
 }
+    
+/* --- СТИЛИ ДЛЯ БЕГУЩЕЙ СТРОКИ --- */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 12px; /* Отступ от фото */
+    position: relative;
+    /* Маска делает края строки плавно исчезающими */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
 
+.marquee-content {
+    display: inline-block;
+    animation: scrollLeft 20s linear infinite;
+}
+
+.marquee-item {
+    display: inline-block;
+    font-family: 'Great Vibes', cursive; /* Красивый шрифт как в заголовке */
+    font-size: 1.5rem;
+    color: #ff6b81;
+    margin: 0 15px;
+    opacity: 0.8; /* Легкая прозрачность для нежности */
+}
+
+/* Разделитель между словами */
+.sep { font-size: 0.8rem; vertical-align: middle; color: #ff9f43; opacity: 0.6; }
+
+@keyframes scrollLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+    
 /* СЛАЙДЫ */
 .slide {
     display: none;
@@ -252,6 +286,31 @@ audio { display: none; }
     </div>
 
     <div class="slide" id="s2">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="marquee-item">Нежная <span class="sep">❤</span></span>
+                <span class="marquee-item">Милая <span class="sep">❤</span></span>
+                <span class="marquee-item">Заботливая <span class="sep">❤</span></span>
+                <span class="marquee-item">Родная <span class="sep">❤</span></span>
+                <span class="marquee-item">Чуткая <span class="sep">❤</span></span>
+                <span class="marquee-item">Добрая <span class="sep">❤</span></span>
+                <span class="marquee-item">Любимая <span class="sep">❤</span></span>
+                <span class="marquee-item">Женственная <span class="sep">❤</span></span>
+                <span class="marquee-item">Искренняя <span class="sep">❤</span></span>
+                <span class="marquee-item">Волшебная <span class="sep">❤</span></span>
+                <span class="marquee-item">Нежная <span class="sep">❤</span></span>
+                <span class="marquee-item">Милая <span class="sep">❤</span></span>
+                <span class="marquee-item">Заботливая <span class="sep">❤</span></span>
+                <span class="marquee-item">Родная <span class="sep">❤</span></span>
+                <span class="marquee-item">Чуткая <span class="sep">❤</span></span>
+                <span class="marquee-item">Добрая <span class="sep">❤</span></span>
+                <span class="marquee-item">Любимая <span class="sep">❤</span></span>
+                <span class="marquee-item">Женственная <span class="sep">❤</span></span>
+                <span class="marquee-item">Искренняя <span class="sep">❤</span></span>
+                <span class="marquee-item">Волшебная <span class="sep">❤</span></span>
+            </div>
+        </div>
+
         <div class="photo-container">
             <img src="love1.png" class="photo" alt="Наше фото">
         </div>
@@ -260,6 +319,31 @@ audio { display: none; }
     </div>
 
     <div class="slide" id="s3">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="marquee-item">Ослепительная <span class="sep">✨</span></span>
+                <span class="marquee-item">Яркая <span class="sep">✨</span></span>
+                <span class="marquee-item">Стильная <span class="sep">✨</span></span>
+                <span class="marquee-item">Грациозная <span class="sep">✨</span></span>
+                <span class="marquee-item">Элегантная <span class="sep">✨</span></span>
+                <span class="marquee-item">Восхитительная <span class="sep">✨</span></span>
+                <span class="marquee-item">Чарующая <span class="sep">✨</span></span>
+                <span class="marquee-item">Неотразимая <span class="sep">✨</span></span>
+                <span class="marquee-item">Звёздная <span class="sep">✨</span></span>
+                <span class="marquee-item">Солнечная <span class="sep">✨</span></span>
+                <span class="marquee-item">Ослепительная <span class="sep">✨</span></span>
+                <span class="marquee-item">Яркая <span class="sep">✨</span></span>
+                <span class="marquee-item">Стильная <span class="sep">✨</span></span>
+                <span class="marquee-item">Грациозная <span class="sep">✨</span></span>
+                <span class="marquee-item">Элегантная <span class="sep">✨</span></span>
+                <span class="marquee-item">Восхитительная <span class="sep">✨</span></span>
+                <span class="marquee-item">Чарующая <span class="sep">✨</span></span>
+                <span class="marquee-item">Неотразимая <span class="sep">✨</span></span>
+                <span class="marquee-item">Звёздная <span class="sep">✨</span></span>
+                <span class="marquee-item">Солнечная <span class="sep">✨</span></span>
+            </div>
+        </div>
+
         <div class="photo-container">
             <img src="love2.png" class="photo" alt="Наше фото">
         </div>
@@ -268,6 +352,31 @@ audio { display: none; }
     </div>
 
     <div class="slide" id="s4">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="marquee-item">Уютная <span class="sep">✿</span></span>
+                <span class="marquee-item">Комфортная <span class="sep">✿</span></span>
+                <span class="marquee-item">Понимающая <span class="sep">✿</span></span>
+                <span class="marquee-item">Верная <span class="sep">✿</span></span>
+                <span class="marquee-item">Надёжная <span class="sep">✿</span></span>
+                <span class="marquee-item">Ласковая <span class="sep">✿</span></span>
+                <span class="marquee-item">Душевная <span class="sep">✿</span></span>
+                <span class="marquee-item">Близкая <span class="sep">✿</span></span>
+                <span class="marquee-item">Важная <span class="sep">✿</span></span>
+                <span class="marquee-item">Бесценная <span class="sep">✿</span></span>
+                <span class="marquee-item">Уютная <span class="sep">✿</span></span>
+                <span class="marquee-item">Тёплая <span class="sep">✿</span></span>
+                <span class="marquee-item">Понимающая <span class="sep">✿</span></span>
+                <span class="marquee-item">Верная <span class="sep">✿</span></span>
+                <span class="marquee-item">Надёжная <span class="sep">✿</span></span>
+                <span class="marquee-item">Ласковая <span class="sep">✿</span></span>
+                <span class="marquee-item">Душевная <span class="sep">✿</span></span>
+                <span class="marquee-item">Близкая <span class="sep">✿</span></span>
+                <span class="marquee-item">Важная <span class="sep">✿</span></span>
+                <span class="marquee-item">Бесценная <span class="sep">✿</span></span>
+            </div>
+        </div>
+
         <div class="photo-container">
             <img src="love3.png" class="photo" alt="Наше фото">
         </div>
@@ -275,7 +384,32 @@ audio { display: none; }
         <button class="btn" onclick="nextSlide(5)">Дальше 🌸</button>
     </div>
 
-    <div class="slide" id="s5">
+   <div class="slide" id="s5">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="marquee-item">Умная <span class="sep">★</span></span>
+                <span class="marquee-item">Весёлая <span class="sep">★</span></span>
+                <span class="marquee-item">Интересная <span class="sep">★</span></span>
+                <span class="marquee-item">Классная <span class="sep">★</span></span>
+                <span class="marquee-item">Вдохновляющая <span class="sep">★</span></span>
+                <span class="marquee-item">Талантливая <span class="sep">★</span></span>
+                <span class="marquee-item">Особенная <span class="sep">★</span></span>
+                <span class="marquee-item">Чудесная <span class="sep">★</span></span>
+                <span class="marquee-item">Сексульная <span class="sep">★</span></span>
+                <span class="marquee-item">Обворажительная <span class="sep">★</span></span>
+                <span class="marquee-item">Умная <span class="sep">★</span></span>
+                <span class="marquee-item">Весёлая <span class="sep">★</span></span>
+                <span class="marquee-item">Интересная <span class="sep">★</span></span>
+                <span class="marquee-item">Классная <span class="sep">★</span></span>
+                <span class="marquee-item">Вдохновляющая <span class="sep">★</span></span>
+                <span class="marquee-item">Талантливая <span class="sep">★</span></span>
+                <span class="marquee-item">Особенная <span class="sep">★</span></span>
+                <span class="marquee-item">Чудесная <span class="sep">★</span></span>
+                <span class="marquee-item">Моя Вселенная <span class="sep">★</span></span>
+                <span class="marquee-item">Идеальная <span class="sep">★</span></span>
+            </div>
+        </div>
+
         <div class="photo-container">
             <img src="lego1.png" class="photo" alt="Лего">
         </div>
@@ -425,4 +559,5 @@ createHearts();
 
 </body>
 </html>
+
 

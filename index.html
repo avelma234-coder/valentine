@@ -288,10 +288,10 @@ audio { display: none; }
         <p>Ты будешь моей валентинкой?</p>
         
         <div class="photo-container">
-             <img src="love5.png" class="photo" alt="Вопрос">
+             <img src="love5.png" class="photo" alt="Любовь">
         </div>
         
-        <div class="btn-group">
+        <div class="btn-group" id="buttonGroup">
             <button class="btn" id="yesBtn" onclick="finish()">КОНЕЧНО, ДА! 💖</button>
             <button class="btn" id="noBtn" onclick="handleNo()">Нет...</button>
         </div>
@@ -358,27 +358,27 @@ function nextSlide(n) {
 
 function handleNo() {
     noClickCount++;
+    const buttonGroup = document.getElementById('buttonGroup');
     
-    // Меняем текст на кнопке НЕТ
+    // Меняем текст на кнопке
     if (noClickCount < noTexts.length) {
         noBtn.innerText = noTexts[noClickCount];
         
-        // УВЕЛИЧЕНИЕ КНОПКИ ДА (ИСПРАВЛЕННАЯ ЛОГИКА)
-        // Мы увеличиваем шрифт и отступы, чтобы кнопка реально занимала больше места
-        // и толкала кнопку "Нет" вниз, а не наезжала на нее
+        // Увеличиваем кнопку ДА
+        let scale = 1 + (noClickCount * 0.25); // Увеличение на 25% за каждый клик
+        yesBtn.style.transform = `scale(${scale})`;
         
-        yesFontSize += 0.4; // Растем шрифт
-        yesPadding += 5;    // Растем отступы
-        
-        yesBtn.style.fontSize = `${yesFontSize}rem`;
-        yesBtn.style.padding = `${yesPadding}px ${yesPadding * 2}px`;
-        
+        // РАЗДВИГАЕМ КНОПКИ: увеличиваем gap в зависимости от масштаба кнопки
+        // Это не даст кнопке "ДА" перекрыть кнопку "НЕТ"
+        let newGap = 12 + (noClickCount * 25); 
+        buttonGroup.style.gap = `${newGap}px`;
+
     } else {
-        // Финальная стадия - убираем кнопку Нет
+        // Если кликнули слишком много раз — убираем кнопку НЕТ
         noBtn.style.display = 'none';
+        yesBtn.style.transform = 'scale(1.4)';
         yesBtn.innerText = "ТЕПЕРЬ ТОЛЬКО ДА! 💕";
-        yesBtn.style.fontSize = "2.5rem";
-        yesBtn.style.padding = "30px 50px";
+        buttonGroup.style.gap = "0px";
     }
 }
 
@@ -425,3 +425,4 @@ createHearts();
 
 </body>
 </html>
+

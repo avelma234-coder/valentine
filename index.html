@@ -3,257 +3,361 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Для моей любимой ❤️</title>
+<title>Для тебя ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
+/* ОСНОВНЫЕ НАСТРОЙКИ */
 * { box-sizing: border-box; }
 
 body {
-	margin: 0;
-	font-family: 'Montserrat', sans-serif;
-	background: radial-gradient(circle at center, #fff5f7 0%, #faddd7 100%);
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	color: #444;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    /* Нежный градиент */
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); 
+    background: radial-gradient(circle, #fff0f3 0%, #ffe6eb 100%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #5a3e3e;
 }
 
-/* ФОН */
+/* ЛЕТАЮЩИЕ СЕРДЕЧКИ (ФОН) */
 .floating-bg {
-	position: fixed;
-	inset: 0;
-	z-index: 1;
-	pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
 }
 
-.floating-item {
-	position: absolute;
-	opacity: 0.45;
-	animation: floatUp linear infinite;
-}
-
-.floating-item img {
-	height: 38px;
+.heart-bg {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0;
+    animation: floatUp linear infinite;
 }
 
 @keyframes floatUp {
-	from { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-	10% { opacity: 0.5; }
-	90% { opacity: 0.5; }
-	to { transform: translateY(-15vh) rotate(360deg); opacity: 0; }
+    0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
 }
 
 /* КАРТОЧКА */
 .card {
-	z-index: 10;
-	background: rgba(255,255,255,0.92);
-	backdrop-filter: blur(14px);
-	border-radius: 30px;
-	padding: 35px;
-	max-width: 420px;
-	width: 90%;
-	box-shadow: 0 20px 50px rgba(255,120,150,0.35);
-	text-align: center;
-	min-height: 520px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    padding: 30px;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 25px 50px rgba(255, 107, 129, 0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    /* Минимальная высота, чтобы не скакало */
+    min-height: 550px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
+/* СЛАЙДЫ */
 .slide {
-	display: none;
-	animation: fade 0.8s ease;
+    display: none;
+    width: 100%;
+    animation: fadeIn 0.8s ease;
 }
-
 .slide.active { display: block; }
 
-@keyframes fade {
-	from { opacity: 0; transform: translateY(20px) scale(0.95); }
-	to { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
+/* ТЕКСТЫ */
 h1 {
-	font-family: 'Great Vibes', cursive;
-	font-size: 3.3rem;
-	color: #ff6b81;
-	margin-bottom: 18px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: #ff4757;
+    margin: 0 0 15px 0;
+    text-shadow: 2px 2px 0px rgba(255, 200, 200, 0.5);
 }
 
 p {
-	font-size: 1.1rem;
-	line-height: 1.6;
-	margin-bottom: 22px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    color: #636e72;
 }
 
-/* ФОТО */
+.cute-text {
+    font-weight: 600;
+    color: #ff6b81;
+    margin-top: 10px;
+}
+
+/* ФОТО (ИСПРАВЛЕНО: НЕ ОБРЕЗАЮТСЯ) */
+.photo-container {
+    width: 100%;
+    height: 300px; /* Фиксированная высота контейнера */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    background: #fff0f3;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: inset 0 0 20px rgba(255,182,193,0.3);
+}
+
 .photo {
-	width: 100%;
-	height: 250px;
-	object-fit: cover;
-	border-radius: 20px;
-	margin-bottom: 18px;
-	box-shadow: 0 8px 20px rgba(255,107,129,0.25);
-	border: 3px solid white;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain; /* Важно: фото не обрезается */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
-
-/* ГАЛЕРЕЯ */
-.gallery {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 12px;
-	margin-bottom: 20px;
-}
-
-.gallery img {
-	width: 100%;
-	border-radius: 14px;
-	box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-	transition: transform 0.3s;
-}
-
-.gallery img:hover { transform: scale(1.05); }
 
 /* КНОПКИ */
 .btn {
-	background: linear-gradient(45deg, #ff6b81, #ff8e9e);
-	color: white;
-	border: none;
-	padding: 14px 36px;
-	border-radius: 50px;
-	font-size: 1.05rem;
-	font-weight: 600;
-	cursor: pointer;
-	box-shadow: 0 6px 18px rgba(255,107,129,0.35);
-	transition: 0.3s;
+    background: linear-gradient(45deg, #ff6b81, #ff9f43);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(255, 107, 129, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.btn:hover { transform: translateY(-3px); }
+.btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 25px rgba(255, 107, 129, 0.4);
+}
 
+.btn:active { transform: scale(0.95); }
+
+/* ГРУППА КНОПОК ДЛЯ ФИНАЛА */
 .btn-group {
-	position: relative;
-	height: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+    min-height: 140px; /* Место чтобы кнопки не прыгали */
+    justify-content: center;
+}
+
+#yesBtn {
+    font-size: 1.2rem; 
+    z-index: 2;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 #noBtn {
-	position: absolute;
-	right: 0;
-	background: white;
-	color: #ff6b81;
-	border: 2px solid #ff6b81;
+    background: #dfe6e9;
+    color: #636e72;
+    box-shadow: none;
+    font-size: 0.9rem;
+    padding: 12px 30px;
 }
 
-/* АУДИО */
+/* СПЕЦЭФФЕКТЫ ДЛЯ ФИНАЛЬНОГО ЭКРАНА */
+.big-heart {
+    font-size: 100px;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.15); }
+    60% { transform: scale(1); }
+}
+
+/* СКРЫТЫЙ ПЛЕЕР */
 audio { display: none; }
 </style>
 </head>
 
 <body>
 
-<audio id="music" preload="auto" loop>
-	<source src="https://cdn.pixabay.com/download/audio/2022/10/26/audio_8753746375.mp3?filename=lofi-study-112191.mp3">
+<audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/11/22/audio_febc508520.mp3?filename=romantic-piano-126282.mp3" type="audio/mpeg">
 </audio>
 
 <div class="floating-bg" id="bg"></div>
 
 <div class="card">
 
-	<!-- СЛАЙД 1 -->
-	<div class="slide active" id="s1">
-		<h1>Привет, любимая…</h1>
-		<p>Я приготовил для тебя маленький сюрприз. Включи звук и нажми кнопку 💕</p>
-		<button class="btn" onclick="next(2)">Начать ✨</button>
-	</div>
+    <div class="slide active" id="s1">
+        <h1>Привет, солнце! ☀️</h1>
+        <p>Я сделал этот маленький сайт специально для тебя, чтобы напомнить кое-о чём важном...</p>
+        <p class="cute-text">Включи звук и нажми кнопку ниже 👇</p>
+        <button class="btn" onclick="startJourney()">Узнать секрет ✨</button>
+    </div>
 
-	<!-- СЛАЙД 2 -->
-	<div class="slide" id="s2">
-		<img src="love1.png" class="photo">
-		<p>Каждый момент с тобой — это что-то очень тёплое и настоящее.</p>
-		<button class="btn" onclick="next(3)">Дальше ❤️</button>
-	</div>
+    <div class="slide" id="s2">
+        <div class="photo-container">
+            <img src="love1.png" class="photo" alt="Наше фото">
+        </div>
+        <p>Помнишь этот момент? С тобой каждый день становится особенным.</p>
+        <button class="btn" onclick="nextSlide(3)">Дальше ❤️</button>
+    </div>
 
-	<!-- СЛАЙД 3 -->
-	<div class="slide" id="s3">
-		<h1>Это мы 💖</h1>
-		<div class="gallery">
-			<img src="love2.png">
-			<img src="love3.png">
-			<img src="love4.png">
-			<img src="love5.png">
-			<img src="lego1.png">
-			<img src="love1.png">
-		</div>
-		<button class="btn" onclick="next(4)">Дальше 💌</button>
-	</div>
+    <div class="slide" id="s3">
+        <div class="photo-container">
+            <img src="love2.png" class="photo" alt="Наше фото">
+        </div>
+        <p>Твоя улыбка — это лучшее, что я вижу каждый день.</p>
+        <button class="btn" onclick="nextSlide(4)">Ещё... 🥰</button>
+    </div>
 
-	<!-- СЛАЙД 4 -->
-	<div class="slide" id="s4">
-		<h1>Будешь моей валентинкой?</h1>
-		<p>14 февраля и навсегда 💕</p>
-		<div class="btn-group">
-			<button class="btn" onclick="finish()">ДА!</button>
-			<button class="btn" id="noBtn" onmouseover="run()">Нет</button>
-		</div>
-	</div>
+    <div class="slide" id="s4">
+        <div class="photo-container">
+            <img src="love3.png" class="photo" alt="Наше фото">
+        </div>
+        <p>Даже когда мы дурачимся или молчим, мне с тобой невероятно тепло.</p>
+        <button class="btn" onclick="nextSlide(5)">Дальше 🌸</button>
+    </div>
 
-	<!-- СЛАЙД 5 -->
-	<div class="slide" id="s5">
-		<h1>Я самый счастливый ❤️</h1>
-		<p>Спасибо тебе за то, что ты есть. Я тебя очень люблю.</p>
-	</div>
+    <div class="slide" id="s5">
+        <div class="photo-container">
+            <img src="lego1.png" class="photo" alt="Лего">
+        </div>
+        <p>Мы как детальки лего — идеально подходим друг другу.</p>
+        <button class="btn" onclick="nextSlide(6)">Самое важное... 💌</button>
+    </div>
+
+    <div class="slide" id="s6">
+        <h1>Важный вопрос...</h1>
+        <p>Ты будешь моей валентинкой?</p>
+        <div class="photo-container" style="height: 150px; background: transparent; box-shadow: none;">
+             <img src="love5.png" class="photo" style="border-radius: 50%;">
+        </div>
+        
+        <div class="btn-group">
+            <button class="btn" id="yesBtn" onclick="finish()">КОНЕЧНО, ДА! 💖</button>
+            <button class="btn" id="noBtn" onclick="handleNo()">Нет...</button>
+        </div>
+    </div>
+
+    <div class="slide" id="s7">
+        <div class="big-heart">❤️</div>
+        <h1>УРАААА!</h1>
+        <p>Я знал, что ты согласишься!</p>
+        <p>Люблю тебя бесконечно! Жди подарочек 😘</p>
+        <div class="photo-container" style="background: transparent; box-shadow: none;">
+            <img src="love4.png" class="photo">
+        </div>
+    </div>
 
 </div>
 
 <script>
-let cur = 1;
+let currentSlide = 1;
 const music = document.getElementById('music');
-music.volume = 0.4;
+music.volume = 0.5; // Громкость 50%
 
-function next(n) {
-	document.getElementById(`s${cur}`).classList.remove('active');
-	if (cur === 1) music.play();
-	cur = n;
-	document.getElementById(`s${cur}`).classList.add('active');
+// Данные для кнопки "Нет"
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const noTexts = [
+    "Нет", 
+    "Ты уверена?", 
+    "Серьёзно?!", 
+    "Не разбивай мне сердце 💔", 
+    "Подумай хорошенько...", 
+    "Последний шанс!"
+];
+let noClickCount = 0;
+
+function startJourney() {
+    music.play().catch(e => console.log("Нужно взаимодействие для музыки"));
+    nextSlide(2);
 }
 
-function run() {
-	const btn = document.getElementById('noBtn');
-	btn.style.transform = `translate(${Math.random()*120-60}px, ${Math.random()*80-40}px)`;
+function nextSlide(n) {
+    // Скрываем текущий
+    document.getElementById(`s${currentSlide}`).classList.remove('active');
+    // Показываем следующий
+    currentSlide = n;
+    document.getElementById(`s${currentSlide}`).classList.add('active');
+}
+
+function handleNo() {
+    noClickCount++;
+    
+    // Меняем текст на кнопке
+    if (noClickCount < noTexts.length) {
+        noBtn.innerText = noTexts[noClickCount];
+        // Увеличиваем кнопку ДА
+        let scale = 1 + (noClickCount * 0.2);
+        yesBtn.style.transform = `scale(${scale})`;
+    } else {
+        // Если кликнули слишком много раз — убираем кнопку НЕТ
+        noBtn.style.display = 'none';
+        yesBtn.style.transform = 'scale(1.8)';
+        yesBtn.innerText = "ТЕПЕРЬ ТОЛЬКО ДА! 💕";
+    }
 }
 
 function finish() {
-	next(5);
-	confetti({
-		particleCount: 200,
-		spread: 90,
-		origin: { y: 0.6 },
-		colors: ['#ff6b81','#ffb3c1','#ffffff']
-	});
+    nextSlide(7);
+    
+    // Запуск конфетти (фейерверка)
+    const duration = 5 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 } }));
+    }, 250);
 }
 
-/* ФОН */
-const bg = document.getElementById('bg');
-const icons = [
-	'https://cdn.pixabay.com/photo/2016/10/26/15/28/heart-1771878_1280.png',
-	'https://cdn.pixabay.com/photo/2018/02/15/15/30/pink-3155589_1280.png'
-];
-
-for (let i = 0; i < 18; i++) {
-	const el = document.createElement('div');
-	el.className = 'floating-item';
-	el.style.left = Math.random()*100+'%';
-	el.style.animationDuration = 15 + Math.random()*10 + 's';
-	el.style.animationDelay = -Math.random()*20 + 's';
-
-	const img = document.createElement('img');
-	img.src = icons[Math.floor(Math.random()*icons.length)];
-	el.appendChild(img);
-	bg.appendChild(el);
+/* ГЕНЕРАЦИЯ ФОНА (СЕРДЕЧКИ) */
+function createHearts() {
+    const bg = document.getElementById('bg');
+    const symbols = ['❤️', '💖', '💕', '😻', '🌹', '✨'];
+    
+    for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-bg';
+        heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        
+        // Случайная позиция и скорость
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDuration = (Math.random() * 10 + 10) + 's'; // 10-20 сек
+        heart.style.animationDelay = '-' + (Math.random() * 20) + 's';
+        
+        bg.appendChild(heart);
+    }
 }
+
+createHearts();
 </script>
 
 </body>
